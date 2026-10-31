@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gurukul Edu Tech</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f6f9;--surface:#fff;--ink:#12263a;--muted:#51657a;--line:#d3dee8;--accent:#0b6e6e;--accent-ink:#fff;--mark:#f5b83d;--mark-ink:#3a2a00;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a26;--surface:#162636;--ink:#e8f0f6;--muted:#9bb0c3;--line:#2a3f54;--accent:#4fc3b8;--accent-ink:#06201e;--mark:#f5b83d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1a26;--surface:#162636;--ink:#e8f0f6;--muted:#9bb0c3;--line:#2a3f54;--accent:#4fc3b8;--accent-ink:#06201e;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bricolage Grotesque","IBM Plex Sans",sans-serif;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.2rem,7vw,3.8rem);font-weight:800;letter-spacing:-.02em}h2{font-size:1.7rem}h3{font-size:1.15rem}
+p{max-width:68ch;margin:0 0 1em}
+header{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);border-bottom:1px solid var(--line);z-index:5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.bar{max-width:1040px;margin:auto;padding:.6rem 1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.logo{font:800 1.2rem "Bricolage Grotesque",sans-serif;color:var(--ink);text-decoration:none;margin-right:auto}
+.logo span{background:var(--mark);color:var(--mark-ink);padding:0 .3em;border-radius:4px}
+nav{display:flex;gap:.25rem;overflow-x:auto;max-width:100%}
+nav a{white-space:nowrap;padding:.4rem .7rem;border-radius:999px;color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a:hover{color:var(--ink)}nav a[aria-current=page]{background:var(--accent);color:var(--accent-ink)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+main{max-width:1040px;margin:auto;padding:2rem 1rem 3rem}
+section.page{display:none}section.page.on{display:block}
+.hero{padding:2rem 0 2.5rem;border-bottom:1px solid var(--line);margin-bottom:2rem}
+.hero p{font-size:1.15rem;color:var(--muted)}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:.7rem 1.2rem;font:600 1rem "IBM Plex Sans",sans-serif;cursor:pointer;text-decoration:none}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--ink);margin-left:.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.2rem}
+.box p{margin:0;color:var(--muted);font-size:.95rem}
+.stats{display:flex;flex-wrap:wrap;gap:2rem;margin:1.5rem 0 0}
+.stats b{display:block;font:800 2rem "Bricolage Grotesque",sans-serif}.stats span{color:var(--muted);font-size:.9rem}
+.tag{display:inline-block;background:var(--mark);color:var(--mark-ink);font-weight:600;font-size:.8rem;padding:.1rem .5rem;border-radius:4px;margin-bottom:.4rem}
+ol.steps{list-style:none;padding:0;margin:0;counter-reset:s;max-width:720px}
+ol.steps li{counter-increment:s;position:relative;padding:0 0 1.4rem 3.2rem;border-left:2px solid var(--line);margin-left:1.1rem}
+ol.steps li::before{content:counter(s);position:absolute;left:-1.2rem;top:0;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:700}
+ol.steps li:last-child{border-left-color:transparent}
+.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:480px;background:var(--surface)}
+th,td{text-align:left;padding:.7rem .9rem;border-bottom:1px solid var(--line)}th{font-weight:600;background:var(--bg)}
+label{display:block;font-weight:500;margin:.8rem 0 .25rem}
+input{width:100%;padding:.65rem .8rem;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font:inherit}
+.auth{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;max-width:760px}
+.msg{margin-top:.8rem;font-weight:500;min-height:1.5em}.msg.err{color:#c0392b}.msg.ok{color:var(--accent)}
+details{background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:.6rem;padding:.2rem 1rem}
+summary{cursor:pointer;font-weight:600;padding:.7rem 0}
+details ul{padding-left:1.2rem;color:var(--muted)}details li{margin-bottom:.4rem}
+.lock{text-align:center;padding:2.5rem 1rem;border:2px dashed var(--line);border-radius:12px}
+.who{font-size:.9rem;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:1.5rem 1rem;text-align:center;color:var(--muted);font-size:.9rem}
+@media (max-width:560px){.btn.alt{margin:.5rem 0 0}}
+body{background:radial-gradient(900px 400px at 100% -5%,rgba(11,110,110,.14),transparent 60%),var(--bg)}
+header{box-shadow:0 2px 12px rgba(18,38,58,.08)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#0a3f55,#0b6e6e 65%,#1b9484);color:#fff;border:0;border-radius:20px;padding:2.6rem 1.6rem}
+.hero::after{content:"</>";position:absolute;right:1rem;bottom:-1.5rem;font:800 8rem "Bricolage Grotesque",sans-serif;color:rgba(255,255,255,.09);pointer-events:none}
+.hero h1{color:#fff}.hero p{color:#dff3f0}.hero .btn{background:var(--mark);color:var(--mark-ink)}.hero .btn.alt{background:transparent;color:#fff;border-color:#fff}
+.stats b{color:var(--mark)}.hero .stats span{color:#cfe9e6}
+.box{border-top:4px solid var(--accent);box-shadow:0 4px 14px rgba(18,38,58,.07)}
+.grid .box:nth-child(3n+2){border-top-color:var(--mark)}.grid .box:nth-child(3n){border-top-color:#3b82c4}
+#home .hero + h2 + .grid .box h3::before{font-size:1.4rem;display:block;margin-bottom:.3rem}
+#home .hero + h2 + .grid .box:nth-child(1) h3::before{content:"🧮"}#home .hero + h2 + .grid .box:nth-child(2) h3::before{content:"🗄️"}#home .hero + h2 + .grid .box:nth-child(3) h3::before{content:"⚙️"}#home .hero + h2 + .grid .box:nth-child(4) h3::before{content:"🌐"}#home .hero + h2 + .grid .box:nth-child(5) h3::before{content:"☕"}#home .hero + h2 + .grid .box:nth-child(6) h3::before{content:"🧩"}#home .hero + h2 + .grid .box:nth-child(7) h3::before{content:"💻"}#home .hero + h2 + .grid .box:nth-child(8) h3::before{content:"🔧"}
+#home .grid ~ h2 + .grid .box h3::before{font-size:1.4rem;display:block;margin-bottom:.3rem}
+#home .grid ~ h2 + .grid .box:nth-child(1) h3::before{content:"📝"}#home .grid ~ h2 + .grid .box:nth-child(2) h3::before{content:"📚"}#home .grid ~ h2 + .grid .box:nth-child(3) h3::before{content:"🎓"}
+section.page>h1::after{content:"";display:block;width:70px;height:6px;background:var(--mark);border-radius:3px;margin-top:.6rem}
+th{background:var(--accent);color:var(--accent-ink)}table{border-radius:10px;overflow:hidden;box-shadow:0 4px 14px rgba(18,38,58,.07)}
+tr:nth-child(even) td{background:var(--bg)}
+.avatar{width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#3b82c4);color:#fff;display:grid;place-items:center;font:800 2rem "Bricolage Grotesque",sans-serif;margin-bottom:1rem}
+.note{background:rgba(245,184,61,.18);border-left:4px solid var(--mark);padding:.7rem 1rem;border-radius:6px;margin-top:1rem;max-width:720px}
+details{box-shadow:0 2px 8px rgba(18,38,58,.05)}details[open]{border-color:var(--accent)}
+footer{background:#0a3f55;color:#cfe3ea;border:0;margin-top:2rem}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="#home" style="display:flex;align-items:center;gap:.6rem"><svg width="42" height="42" viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a3f55"/><stop offset="1" stop-color="#1b9484"/></linearGradient></defs><rect width="120" height="120" rx="28" fill="url(#lg)"/><circle cx="60" cy="38" r="12" fill="#f5b83d"/><g stroke="#f5b83d" stroke-width="3.5" stroke-linecap="round"><line x1="42" y1="38" x2="36" y2="38"/><line x1="44.4" y1="29" x2="39.2" y2="26"/><line x1="51" y1="22.4" x2="48" y2="17.2"/><line x1="60" y1="20" x2="60" y2="14"/><line x1="69" y1="22.4" x2="72" y2="17.2"/><line x1="75.6" y1="29" x2="80.8" y2="26"/><line x1="78" y1="38" x2="84" y2="38"/></g><path d="M60 96 C50 86 34 84 22 88 V58 C34 54 50 56 60 66 Z" fill="#fff"/><path d="M60 96 C70 86 86 84 98 88 V58 C86 54 70 56 60 66 Z" fill="#d9f1ee"/><g fill="none" stroke="#0b6e6e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="42,68 35,74 42,80"/><polyline points="78,68 85,74 78,80"/></g></svg><span>Gurukul <span>Edu Tech</span></span></a>
+<nav id="nav" aria-label="Main">
+<a href="#home">Home</a><a href="#profile">Teacher</a><a href="#admission">Admission</a><a href="#login">Student login</a><a href="#notes">Lecture notes</a><a href="#payment">Payment</a>
+</nav></div></header>
+
+<main>
+<!-- 1 HOME -->
+<section class="page" id="home">
+<div class="hero">
+<h1>Graduate-level computer science, taught the way exams ask it.</h1>
+<p>Small batches, weekly practice tests and complete notes for BCA, B.Sc. CS, B.Tech and MCA students.</p>
+<a class="btn" href="#admission">See how to join</a><a class="btn alt" href="#notes">Read lecture notes</a>
+<div class="stats"><div><b>12</b><span>students per batch</span></div><div><b>8</b><span>core subjects</span></div><div><b>6 days</b><span>classes each week</span></div></div>
+</div>
+<h2>Subjects we teach</h2>
+<div class="grid">
+<div class="box"><h3>Data Structures &amp; Algorithms</h3><p>Arrays to graphs, complexity analysis, coding practice in C and Java.</p></div>
+<div class="box"><h3>Database Management Systems</h3><p>ER modelling, normalization, SQL, transactions and indexing.</p></div>
+<div class="box"><h3>Operating Systems</h3><p>Processes, scheduling, memory management, deadlocks, file systems.</p></div>
+<div class="box"><h3>Computer Networks</h3><p>OSI and TCP/IP layers, routing, addressing, network security basics.</p></div>
+<div class="box"><h3>Object-Oriented Programming</h3><p>C++ and Java: classes, inheritance, polymorphism, exceptions.</p></div>
+<div class="box"><h3>Software Engineering</h3><p>SDLC models, UML, testing, project estimation and documentation.</p></div>
+<div class="box"><h3>Web Technologies</h3><p>HTML, CSS, JavaScript and server-side basics with a mini project.</p></div>
+<div class="box"><h3>Computer Organization</h3><p>Number systems, logic design, CPU, memory hierarchy, I/O.</p></div>
+</div>
+<h2 style="margin-top:2.5rem">What you get</h2>
+<div class="grid">
+<div class="box"><h3>Weekly tests</h3><p>A short test every Saturday, with marks reviewed one-to-one.</p></div>
+<div class="box"><h3>Notes for members</h3><p>Chapter-wise lecture notes, available after you log in.</p></div>
+<div class="box"><h3>University pattern</h3><p>Previous-year questions solved in the exact format examiners expect.</p></div>
+</div>
+</section>
+
+<!-- 2 PROFILE -->
+<section class="page" id="profile">
+<h1>Your teacher</h1>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));align-items:start">
+<div class="box"><div class="avatar">SA</div><h2>Sugata Adak</h2><p>Master of Computer Application (MCA)<br>25+ years of teaching experience<br>Flat 1/F, 1st Floor, MLD Complex,<br>Joykrishna Bazar, Tarakeswar</p>
+<p style="margin-top:1rem">Phone: 9434501596<br>Email: Sugata.adak@gmail.com</p></div>
+<div>
+<p>With more than 25 years as a college teacher and 4 years in software development, I teach computer subjects the way they are used in both exams and real work. Every class explains the concept first, then shows how it is applied.</p>
+<h3>Qualifications</h3>
+<ul><li>Master of Computer Application (MCA)</li></ul>
+<h3>Experience</h3>
+<ul><li>Over 25 years of teaching experience as a college teacher</li><li>4 years of software development experience</li></ul>
+<h3>Teaching approach</h3>
+<ul><li>Concept first, then code, then exam answer writing</li><li>Doubt-clearing time at the end of every class</li><li>Regular progress reports shared with students</li></ul>
+</div></div>
+</section>
+
+<!-- 3 ADMISSION -->
+<section class="page" id="admission">
+<h1>Admission procedure</h1>
+<p>Joining takes four steps. Seats per batch are limited, so early applicants get first choice of timing.</p>
+<ol class="steps">
+<li><h3>Visit or call for a demo class</h3><p>Attend one free class to see the teaching style and choose your subjects.</p></li>
+<li><h3>Fill in the admission form</h3><p>Give your name, college, course, semester and a contact number.</p></li>
+<li><h3>Submit documents</h3><p>Photo ID, one passport photo and your latest semester marksheet.</p></li>
+<li><h3>Pay the fee and get your Student ID</h3><p>See the <a href="#payment" style="color:var(--accent)">payment page</a>. After confirmation you can register on the <a href="#login" style="color:var(--accent)">student login page</a>.</p></li>
+</ol>
+<h2 style="margin-top:1.5rem">Batch timings</h2>
+<div class="wrap"><table><tr><th>Batch</th><th>Days</th><th>Time</th></tr>
+<tr><td>Morning</td><td>Mon – Sat</td><td>7:00 – 9:00 AM</td></tr>
+<tr><td>Evening</td><td>Mon – Sat</td><td>5:00 – 7:00 PM</td></tr>
+<tr><td>Weekend</td><td>Sat – Sun</td><td>10:00 AM – 2:00 PM</td></tr></table></div>
+<p class="note"><b>Please note:</b> batch timings may change. Call 9434501596 to confirm the current timings before you join.</p>
+</section>
+
+<!-- 4 LOGIN -->
+<section class="page" id="login">
+<h1>Student login</h1>
+<div id="loggedIn" hidden class="box" style="max-width:480px"><h2>Welcome, <span id="uname"></span></h2><p>You are logged in. Lecture notes are now unlocked.</p><br><a class="btn" href="#notes">Open lecture notes</a> <button class="btn alt" id="logout" type="button">Log out</button></div>
+<div class="auth" id="forms">
+<div class="box"><h2>Log in</h2>
+<label for="lid">Student ID</label><input id="lid" autocomplete="username">
+<label for="lpw">Password</label><input id="lpw" type="password" autocomplete="current-password">
+<p class="msg" id="lmsg" role="status"></p><button class="btn" id="dologin" type="button">Log in</button></div>
+<div class="box"><h2>New student</h2>
+<label for="rn">Full name</label><input id="rn" autocomplete="name">
+<label for="rid">Student ID given at admission</label><input id="rid">
+<label for="rpw">Create password (6+ characters)</label><input id="rpw" type="password" autocomplete="new-password">
+<p class="msg" id="rmsg" role="status"></p><button class="btn" id="doreg" type="button">Register</button></div>
+</div>
+<p class="who" style="margin-top:1.2rem">Demo note: accounts are saved only in this browser. For real security, connect this form to a server before using it with student data.</p>
+</section>
+
+<!-- 5 NOTES -->
+<section class="page" id="notes">
+<h1>Lecture notes</h1>
+<div id="locked" class="lock"><h2>Notes are for enrolled students</h2><p style="margin:0 auto 1rem">Log in with your Student ID to read the notes.</p><a class="btn" href="#login">Go to student login</a></div>
+<div id="notelist" hidden></div>
+</section>
+
+<!-- 6 PAYMENT -->
+<section class="page" id="payment">
+<h1>Payment procedure</h1>
+<h2>Fee structure</h2>
+<div class="wrap"><table><tr><th>Plan</th><th>Includes</th><th>Fee</th></tr>
+<tr><td>One subject</td><td>Classes, notes, weekly tests</td><td>₹350 / month</td></tr>
+<tr><td>Two subjects</td><td>Same as above for each subject</td><td>₹700 / month</td></tr>
+<tr><td>Three subjects</td><td>Same as above for each subject</td><td>₹1,050 / month</td></tr></table></div>
+<h2 style="margin-top:2rem">How to pay</h2>
+<ol class="steps">
+<li><h3>Choose a method</h3><p>Cash at the centre, UPI, or bank transfer.</p></li>
+<li><h3>Pay the exact amount</h3><p>UPI ID: sugata.adak-3@okhdfcbank<br>Account name: Sugata Adak<br>Account no.: 10621930001813 · IFSC: HDFC0002205</p></li>
+<li><h3>Tell us you have paid</h3><p>Message your name, batch and payment details on 9434501596.</p></li>
+<li><h3>Get your Student ID</h3><p>Your Student ID is confirmed after payment. Use it to register on the student login page.</p></li>
+</ol>
+<div class="box" style="max-width:720px"><h3>Good to know</h3><p>Fees are due by the 5th of each month. Fees once paid are non-refundable after the first week. Replace this with your own policy.</p></div>
+</section>
+</main>
+<footer>© Gurukul Edu Tech · Joykrishna Bazar, Tarakeswar · 9434501596</footer>
+
+<script>
+var NOTES=[
+["Data Structures",["Arrays store items in contiguous memory; access is O(1), insertion in the middle is O(n).","A stack is last-in first-out (push, pop); a queue is first-in first-out (enqueue, dequeue).","Binary search needs sorted data and runs in O(log n).","Graph traversal: BFS uses a queue, DFS uses a stack or recursion."]],
+["Database Management",["A primary key uniquely identifies each row and cannot be null.","1NF removes repeating groups, 2NF removes partial dependencies, 3NF removes transitive dependencies.","ACID: atomicity, consistency, isolation, durability.","Use JOIN to combine rows from tables that share a related column."]],
+["Operating Systems",["A process is a program in execution; a thread is a lightweight unit within a process.","Scheduling algorithms: FCFS, SJF, Round Robin, Priority.","Deadlock needs mutual exclusion, hold and wait, no preemption and circular wait.","Paging splits memory into fixed-size blocks to avoid external fragmentation."]],
+["Computer Networks",["The OSI model has 7 layers; TCP/IP has 4.","TCP is connection-oriented and reliable; UDP is connectionless and faster.","An IPv4 address is 32 bits; IPv6 is 128 bits.","DNS translates domain names into IP addresses."]],
+["Object-Oriented Programming",["Four pillars: encapsulation, abstraction, inheritance, polymorphism.","Overloading is the same method name with different parameters; overriding redefines a parent method in a child.","A constructor initializes an object when it is created."]]
+];
+var pages=["home","profile","admission","login","notes","payment"],user=null,store={};
+function load(){try{store=JSON.parse(localStorage.getItem("bw_users")||"{}")}catch(e){store={}}
+try{user=sessionStorage.getItem("bw_user")}catch(e){user=null}}
+function save(){try{localStorage.setItem("bw_users",JSON.stringify(store))}catch(e){}}
+function $(id){return document.getElementById(id)}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function route(){
+var h=(location.hash||"#home").slice(1);if(pages.indexOf(h)<0)h="home";
+pages.forEach(function(p){$(p).classList.toggle("on",p===h)});
+document.querySelectorAll("#nav a").forEach(function(a){if(a.getAttribute("href")==="#"+h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+state();window.scrollTo(0,0);document.title=h.charAt(0).toUpperCase()+h.slice(1)+" – Gurukul Edu Tech";}
+function state(){
+var u=user&&store[user];
+$("loggedIn").hidden=!u;$("forms").hidden=!!u;
+$("locked").hidden=!!u;$("notelist").hidden=!u;
+if(u){$("uname").textContent=u.name}}
+function renderNotes(){
+$("notelist").innerHTML=NOTES.map(function(n){return "<details><summary>"+esc(n[0])+"</summary><ul>"+n[1].map(function(t){return "<li>"+esc(t)+"</li>"}).join("")+"</ul></details>"}).join("");}
+function msg(id,t,ok){var m=$(id);m.textContent=t;m.className="msg "+(ok?"ok":"err")}
+$("doreg").onclick=function(){
+var n=$("rn").value.trim(),i=$("rid").value.trim().toUpperCase(),p=$("rpw").value;
+if(!n||!i)return msg("rmsg","Enter your name and Student ID.");
+if(p.length<6)return msg("rmsg","Password must be at least 6 characters.");
+if(store[i])return msg("rmsg","This Student ID is already registered. Log in instead.");
+store[i]={name:n,pw:p};save();msg("rmsg","Registered. You can log in now.",true);
+$("lid").value=i;$("rn").value=$("rid").value=$("rpw").value="";};
+$("dologin").onclick=function(){
+var i=$("lid").value.trim().toUpperCase(),p=$("lpw").value;
+if(!store[i]||store[i].pw!==p)return msg("lmsg","Student ID or password is incorrect.");
+user=i;try{sessionStorage.setItem("bw_user",i)}catch(e){}
+$("lpw").value="";msg("lmsg","");state();};
+$("logout").onclick=function(){user=null;try{sessionStorage.removeItem("bw_user")}catch(e){}state()};
+window.addEventListener("hashchange",route);
+load();renderNotes();route();
+</script>
+</body>
+</html>
